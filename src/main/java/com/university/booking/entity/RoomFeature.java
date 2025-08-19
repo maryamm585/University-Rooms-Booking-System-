@@ -1,0 +1,19 @@
+package com.university.booking.entity;
+
+public enum RoomFeature {
+    PROJECTOR,
+    WHITEBOARD,
+    SMARTBOARD,
+    COMPUTER,
+    AUDIO_SYSTEM,
+    VIDEO_CONFERENCING,
+    AIR_CONDITIONING,
+    WIFI,
+    LABORATORY_EQUIPMENT,
+    MICROSCOPES,
+    CHEMISTRY_EQUIPMENT,
+    PHYSICS_EQUIPMENT,
+    COMPUTER_LAB,
+    ACCESSIBLE
+}
+

@@ -1,0 +1,1 @@
+create database university_booking_db;
