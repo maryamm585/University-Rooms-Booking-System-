@@ -1,4 +1,19 @@
 package com.university.booking.service;
 
-public interface UserService {
+import com.university.booking.dto.request.UserCreateRequest;
+import com.university.booking.dto.response.UserResponse;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+import java.util.List;
+
+public interface UserService extends UserDetailsService {
+
+    UserResponse createUser(UserCreateRequest createRequest);
+
+    UserResponse getUserById(Long id);
+
+    List<UserResponse> getAllUsers();
+
+    void deleteUser(Long id);
+
 }
