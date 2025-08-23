@@ -6,6 +6,7 @@ import com.university.booking.service.RoomService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +21,8 @@ public class RoomController {
         this.roomService = roomService;
     }
 
-    @PostMapping("/ADMIN/createroom")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/createroom")
     public ResponseEntity<RoomDTO> createRoom(
             @RequestBody RoomDTO roomDTO,
             @RequestParam Long buildingId
@@ -29,27 +31,32 @@ public class RoomController {
     }
 
 
-    @GetMapping("/All/getroombyid/{id}")
+    @PreAuthorize("hasAnyRole('STUDENT', 'ADMIN', 'FACULTY_MEMBER')")
+    @GetMapping("/getroombyid/{id}")
     public ResponseEntity<RoomDTO> getRoomById(@PathVariable Long id) {
         return ResponseEntity.ok(roomService.getRoomById(id));
     }
 
-    @GetMapping("/All/getallrooms")
+    @PreAuthorize("hasAnyRole('STUDENT', 'ADMIN', 'FACULTY_MEMBER')")
+    @GetMapping("/getallrooms")
     public ResponseEntity<List<RoomDTO>> getAllRooms() {
         return ResponseEntity.ok(roomService.getAllRooms());
     }
 
-    @GetMapping("/All/activerooms")
+    @PreAuthorize("hasAnyRole('STUDENT', 'ADMIN', 'FACULTY_MEMBER')")
+    @GetMapping("/activerooms")
     public ResponseEntity<List<RoomDTO>> getActiveRooms() {
         return ResponseEntity.ok(roomService.getActiveRooms());
     }
 
-    @GetMapping("/All/roomsinbuilding/{buildingId}")
+    @PreAuthorize("hasAnyRole('STUDENT', 'ADMIN', 'FACULTY_MEMBER')")
+    @GetMapping("/roomsinbuilding/{buildingId}")
     public ResponseEntity<List<RoomDTO>> getRoomsByBuilding(@PathVariable Long buildingId) {
         return ResponseEntity.ok(roomService.getRoomsByBuilding(buildingId));
     }
 
-    @PutMapping("/ADMIN/updateroom/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/updateroom/{id}")
     public ResponseEntity<RoomDTO> updateRoom(
             @PathVariable Long id,
             @RequestBody RoomDTO roomDTO
@@ -57,16 +64,20 @@ public class RoomController {
         return ResponseEntity.ok(roomService.updateRoom(id, roomDTO));
     }
 
-    @PutMapping("/ADMIN/activate/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/activate/{id}")
     public ResponseEntity<RoomDTO> activateRoom(@PathVariable Long id) {
         return ResponseEntity.ok(roomService.activateRoom(id));
     }
 
-    @PutMapping("/ADMIN/deactivate/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/deactivate/{id}")
     public ResponseEntity<RoomDTO> deactivateRoom(@PathVariable Long id) {
         return ResponseEntity.ok(roomService.deactivateRoom(id));
     }
-    @GetMapping("/ADMIN/{id}/Roomfeatures")
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/{id}/Roomfeatures")
     public ResponseEntity<?> getRoomFeatures(@PathVariable Long id) {
         try {
             Set<RoomFeature> features = roomService.getFeaturesByRoomId(id);
@@ -76,7 +87,8 @@ public class RoomController {
         }
     }
 
-    @DeleteMapping("/ADMIN/deleteroom/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/room/{id}")
     public ResponseEntity<Void> deleteRoom(@PathVariable Long id) {
         roomService.deleteRoom(id);
         return ResponseEntity.noContent().build();

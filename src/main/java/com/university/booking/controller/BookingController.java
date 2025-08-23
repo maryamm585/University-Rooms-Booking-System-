@@ -5,6 +5,7 @@ import com.university.booking.dto.response.BookingResponse;
 import com.university.booking.service.BookingService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class BookingController {
 
     private final BookingService bookingService;
 
+    @PreAuthorize("hasAnyRole('STUDENT', 'FACULTY_MEMBER')")
     @PostMapping("/create")
     public BookingResponse createBooking(@Valid @RequestBody BookingRequest request) {
         return bookingService.createBooking(request);
@@ -31,6 +33,7 @@ public class BookingController {
         return bookingService.getBookingById(id);
     }
 
+    @PreAuthorize("hasAnyRole('STUDENT', 'FACULTY_MEMBER')")
     @PostMapping("/{id}/cancel")
     public BookingResponse cancelBooking(
             @PathVariable Long id,

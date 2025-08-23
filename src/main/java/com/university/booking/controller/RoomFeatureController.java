@@ -5,6 +5,7 @@ import com.university.booking.service.RoomFeatureService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +18,8 @@ public class RoomFeatureController {
         this.featureService = featureService;
     }
 
-    @PostMapping("/ADMIN/creatfeature")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/creatfeature")
     public ResponseEntity<?> createFeature(@RequestBody RoomFeature feature) {
         try {
             RoomFeature createdFeature = featureService.createFeature(feature);
@@ -27,7 +29,8 @@ public class RoomFeatureController {
         }
     }
 
-    @GetMapping("/ADMIN/getFeaturebyid/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/getFeaturebyid/{id}")
     public ResponseEntity<?> getFeatureById(@PathVariable Long id) {
         try {
             RoomFeature feature = featureService.getFeatureById(id);
@@ -37,13 +40,15 @@ public class RoomFeatureController {
         }
     }
 
-    @GetMapping("/All/getfeatures")
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/getfeatures")
     public ResponseEntity<List<RoomFeature>> getAllFeatures() {
         List<RoomFeature> features = featureService.getAllFeatures();
         return ResponseEntity.ok(features);
     }
 
-    @PutMapping("/ADMIN/updatefeature/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/updatefeature/{id}")
     public ResponseEntity<?> updateFeature(@PathVariable Long id, @RequestBody RoomFeature feature) {
         try {
             RoomFeature updatedFeature = featureService.updateFeature(id, feature);
@@ -53,7 +58,8 @@ public class RoomFeatureController {
         }
     }
 
-    @DeleteMapping("/ADMIN/deletefeature/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/deletefeature/{id}")
     public ResponseEntity<?> deleteFeature(@PathVariable Long id) {
         try {
             featureService.deleteFeature(id);

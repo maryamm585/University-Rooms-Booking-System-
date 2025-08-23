@@ -1,6 +1,5 @@
 package com.university.booking.repository;
 
-import com.university.booking.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -2,7 +2,6 @@ package com.university.booking.service.impl;
 
 import com.university.booking.dto.request.UserCreateRequest;
 import com.university.booking.dto.response.UserResponse;
-import com.university.booking.entity.Role;
 import com.university.booking.entity.User;
 import com.university.booking.exception.ResourceNotFoundException;
 import com.university.booking.repository.RoleRepository;
