@@ -20,13 +20,15 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping
+    // MAKE NEW USER
+    @PostMapping("/")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserCreateRequest createRequest) {
         UserResponse createdUser = userService.createUser(createRequest);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
+    // GET USER BY ID
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
@@ -34,13 +36,15 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @GetMapping
+    // GET ALL USERS
+    @GetMapping("")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<UserResponse>> getAllUsers() {
         List<UserResponse> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
     }
 
+    // DELETE USER BY ID
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {

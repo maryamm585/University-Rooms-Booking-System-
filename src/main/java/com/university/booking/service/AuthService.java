@@ -10,11 +10,15 @@ import com.university.booking.entity.User;
 import com.university.booking.security.JwtService;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +29,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final Logger logger = LoggerFactory.getLogger(AuthService.class);
 
     public AuthenticationResponse register(RegisterRequest request) {
         User user = new User();
@@ -41,6 +46,7 @@ public class AuthService {
         user.setDepartment(department);
         userRepository.save(user);
         String jwtToken = jwtService.generateToken(user);
+        logger.info("new User with Id: {} and Role {} is Created At {}", user.getId(), user.getRole(), new Date(System.currentTimeMillis()));
         return new AuthenticationResponse()
                 .builder()
                 .token(jwtToken)
@@ -53,6 +59,7 @@ public class AuthService {
         );
         User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new UsernameNotFoundException("Invalid email"));
         String jwtToken = jwtService.generateToken(user);
+        logger.info("User with Id: {} and Role {} is Logged Into The System at {}", user.getId(), user.getRole(), new Date(System.currentTimeMillis()));
         return new AuthenticationResponse()
                 .builder()
                 .token(jwtToken)

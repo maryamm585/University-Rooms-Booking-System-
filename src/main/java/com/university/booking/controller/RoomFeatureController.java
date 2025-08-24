@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("api/v1/roomfeature")
 public class RoomFeatureController {
     private final RoomFeatureService featureService;
 
@@ -18,8 +19,9 @@ public class RoomFeatureController {
         this.featureService = featureService;
     }
 
+    // CREATE NEW FEATURE
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/creatfeature")
+    @PostMapping("/")
     public ResponseEntity<?> createFeature(@RequestBody RoomFeature feature) {
         try {
             RoomFeature createdFeature = featureService.createFeature(feature);
@@ -29,8 +31,9 @@ public class RoomFeatureController {
         }
     }
 
+    // GET FEATURE BY ID
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/getFeaturebyid/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getFeatureById(@PathVariable Long id) {
         try {
             RoomFeature feature = featureService.getFeatureById(id);
@@ -40,15 +43,17 @@ public class RoomFeatureController {
         }
     }
 
+    // GET ALL FEATURES
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/getfeatures")
+    @GetMapping("/")
     public ResponseEntity<List<RoomFeature>> getAllFeatures() {
         List<RoomFeature> features = featureService.getAllFeatures();
         return ResponseEntity.ok(features);
     }
 
+    // UPDATE FEATURE
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/updatefeature/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> updateFeature(@PathVariable Long id, @RequestBody RoomFeature feature) {
         try {
             RoomFeature updatedFeature = featureService.updateFeature(id, feature);
@@ -58,8 +63,9 @@ public class RoomFeatureController {
         }
     }
 
+    // DELETE FEATURE
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/deletefeature/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteFeature(@PathVariable Long id) {
         try {
             featureService.deleteFeature(id);

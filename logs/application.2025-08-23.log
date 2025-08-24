@@ -1,0 +1,31 @@
+2025-08-21 17:36:57 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-08-21 17:36:57 [main] INFO  c.u.booking.BookingSystemApplication - Starting BookingSystemApplication using Java 21.0.8 with PID 3568 (C:\Users\maabd\Desktop\booking-system\target\classes started by maabd in C:\Users\maabd\Desktop\booking-system)
+2025-08-21 17:36:57 [main] DEBUG c.u.booking.BookingSystemApplication - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-08-21 17:36:57 [main] INFO  c.u.booking.BookingSystemApplication - The following 1 profile is active: "dev"
+2025-08-21 17:37:01 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-21 17:37:01 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-21 17:37:01 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-21 17:37:01 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-21 17:37:01 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-21 17:37:01 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7f0d8eff
+2025-08-21 17:37:01 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-21 17:37:02 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-21 17:37:02 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-21 17:37:02 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-21 17:37:03 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-21 17:37:03 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-21 17:37:03 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-21 17:37:07 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-21 17:37:10 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 41 mappings in 'requestMappingHandlerMapping'
+2025-08-21 17:37:10 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-21 17:37:10 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-21 17:37:10 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-21 17:37:11 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-21 17:37:11 [main] INFO  c.u.booking.BookingSystemApplication - Started BookingSystemApplication in 16.054 seconds (process running for 17.884)

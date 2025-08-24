@@ -1,5 +1,6 @@
 package com.university.booking.dto.request;
 
+import com.university.booking.entity.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -23,5 +24,5 @@ public class UserCreateRequest {
     private String password;
 
     @NotBlank(message = "Role is required")
-    private String roleName;
+    private Role role;
 }
