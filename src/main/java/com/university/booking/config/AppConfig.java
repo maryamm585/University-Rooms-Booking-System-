@@ -22,10 +22,13 @@ public class AppConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username ->
-             userRepository
-                     .findByEmail(username)
-                     .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return identifier -> {
+            System.out.println("Looking for user with identifier: " + identifier); // Debug
+            // Try username first, then email
+            return userRepository.findByUsername(identifier)
+                    .or(() -> userRepository.findByEmail(identifier))
+                    .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        };
     }
 
     @Bean

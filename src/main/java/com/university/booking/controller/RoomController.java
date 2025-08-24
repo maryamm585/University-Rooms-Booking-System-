@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("api/v1/room")
+@RequestMapping("/api/v1/room")
 public class RoomController {
 
     private final RoomService roomService;
